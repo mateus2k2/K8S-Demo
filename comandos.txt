@@ -1,0 +1,57 @@
+#CONECTAR NO SERVER USANDO PUTTY
+putty -i "C:\Users\mateu\Downloads\PROGRAMAÇÃO\VPS\Keys\private.ppk" -ssh root@167.99.13.77
+
+#CONFIGURAR CHAVE PRIVADA E FAZER TUNEL SSH
+https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+eval "$(ssh-agent -s)"
+ssh-add "C:\Users\mateu\Downloads\PROGRAMAÇÃO\VPS\Keys\privateOpenForce.ppk"
+ssh root@167.99.13.77
+ssh -L 37403:127.0.0.1:37403 root@167.99.13.77
+
+
+
+
+#TUTORIAL COMPLETO
+https://www.youtube.com/watch?v=eaF51Sc56Fo
+https://github.com/kunchalavikram1427/YouTube_Series/blob/main/Kubernetes/ClusterSetup/minikube-on-digitalocean.md
+https://www.digitalocean.com/community/tutorials/how-to-use-minikube-for-local-kubernetes-development-and-testing
+
+
+
+
+#INSTALL ADITIONAL THINGS
+https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
+https://github.com/kubernetes-sigs/cri-tools/blob/master/docs/crictl.md
+https://www.linuxtechi.com/install-crio-container-runtime-on-ubuntu/
+
+
+
+#INICAR MINIKUBE E DASHBOARD
+minikube start --vm-driver=none --kubernetes-version=v1.23.17
+minikube dashboard --url
+
+
+
+
+#OUTROS COMANDOS
+minikube delete
+kubectl get po,svc
+minikube service list
+curl $(minikube service hello-minikube --url)
+
+
+
+
+#ACESSAR SERVICO PELA NET
+https://kubernetes.io/pt-br/docs/tasks/access-application-cluster/port-forward-access-application-cluster/
+https://kubernetes.io/docs/tasks/access-application-cluster/access-cluster-services/
+https://github.com/kubernetes/minikube/issues/14403
+https://minikube.sigs.k8s.io/docs/handbook/accessing/#:~:text=Using%20minikube%20service%20with%20tunnel,-The%20network%20is&text=Services%20of%20type%20NodePort%20can,routes%20will%20be%20cleaned%20up.
+https://www.google.com/search?q=kubectl+port-forward++an+error+occurred+forwarding&hl=pt-BR&sxsrf=AB5stBhLVkMhfRZgf-oW0zr4BqMWC8vmrg:1690333246747&source=lnms&sa=X&ved=2ahUKEwjwpuWFlquAAxUMq5UCHSAiCJ8Q0pQJegQIAxAC&biw=1920&bih=941&dpr=1
+https://www.google.com/search?q=access+kubernetes+service+digitalocean+droplet&hl=pt-BR&biw=1920&bih=941&sxsrf=AB5stBhF52xflGBwn-eyuXUsu5I2kST72A%3A1690333251587&ei=Q3DAZJupI-vY1sQPt8S-uA0&oq=access+kubernetes+service+digitalocean+&gs_lp=Egxnd3Mtd2l6LXNlcnAiJ2FjY2VzcyBrdWJlcm5ldGVzIHNlcnZpY2UgZGlnaXRhbG9jZWFuICoCCAMyBRAhGKABMgUQIRigATIFECEYoAEyBRAhGKABMgUQIRigAUiIvQZQheUDWP6jBnAQeAGQAQCYAbgBoAH9I6oBBDAuMzC4AQPIAQD4AQGoAhTCAgoQABhHGNYEGLADwgIEECMYJ8ICBxAjGIoFGCfCAgwQIxiKBRgTGIAEGCfCAgsQABiABBixAxiDAcICCxAAGIoFGLEDGIMBwgILEC4YgAQYxwEY0QPCAhEQLhiABBixAxiDARjHARjRA8ICCBAuGLEDGIAEwgIFEC4YgATCAgsQLhiABBixAxiDAcICDhAuGIAEGLEDGMcBGNEDwgIIEAAYgAQYsQPCAggQLhiABBixA8ICDRAuGIoFGMcBGNEDGEPCAhMQLhiKBRixAxiDARjHARjRAxhDwgIHEAAYigUYQ8ICBRAAGIAEwgIOEC4YgAQYsQMYxwEYrwHCAgsQLhiDARixAxiKBcICBxAjGOoCGCfCAhYQABgDGI8BGOoCGLQCGIwDGOUC2AEBwgIWEC4YAxiPARjqAhi0AhiMAxjlAtgBAcICChAAGIAEGLEDGArCAgcQABiABBgKwgIKEC4YgAQYsQMYCsICDRAAGIAEGLEDGIMBGArCAg0QLhiABBjHARivARgKwgIHEAAYDRiABMICBhAAGB4YDcICBhAAGBYYHsICCBAAGIAEGMsBwgIEECEYFeIDBBgAIEGIBgGQBgi6BgYIARABGAs&sclient=gws-wiz-serp
+kubectl port-forward hello-minikube 31972:31972
+minikube service hello-minikube --url
+
+
+
+http://127.0.0.1:37403/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/
